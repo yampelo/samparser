@@ -1,6 +1,11 @@
 # samparser
 A python script used to parse the SAM registry hive. 
 
+Depends on python-registry
+```
+pip install python-registry
+```
+
 Input is a sam registry hive.
 
 ```
