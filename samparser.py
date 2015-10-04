@@ -110,7 +110,7 @@ def samparse(samhive):
 					profilepath_lngth = struct.unpack("<L", data[112:116])[0]
 					workstations_ofst = struct.unpack("<L", data[120:124])[0]
 					workstations_lngth = struct.unpack("<L", data[124:128])[0]
-					# lmpwhash_ofset = struct.unpack("<L", data[156:160])[0]		
+					# lmpwhash_ofset = struct.unpack("<L", data[156:160])[0]	Can enable this, contains the NT and LM hashes	
 					# lmpwhash_lngth = struct.unpack("<L", data[160:164])[0]
 					# ntpwhash_ofset = struct.unpack("<L", data[168:172])[0]		
 					# ntpwhash_lngth = struct.unpack("<L", data[172:176])[0]
@@ -140,7 +140,7 @@ def samparse(samhive):
 				results[user]['Last Login Date'] = f_values[RID][0]
 				results[user]['Password Reset Date'] = f_values[RID][1]
 				results[user]['Password Fail Date'] = f_values[RID][2]
-				results[user]['Account Flags'] = ""			#Gotta do this for the next step
+				results[user]['Account Flags'] = ""		
 				for flag in f_values[RID][3]:
 					results[user]['Account Flags'] += (flag + " | ")
 				results[user]['Failed Login Count'] = f_values[RID][4]
