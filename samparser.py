@@ -200,7 +200,7 @@ def samparse(samhive):
 			results['groups'][groupname]['Group Description'] = data[(comment_offst+52):(comment_offst+52+comment_lngth)]
 			results['groups'][groupname]['Last Write'] = x.timestamp()
 			results['groups'][groupname]['User Count'] = user_count
-			results['groups'][groupname]['Memebers'] = ''
+			results['groups'][groupname]['Members'] = ''
 
 
 			try:
@@ -211,28 +211,28 @@ def samparse(samhive):
 					if tmp == 257:
 						if struct.unpack("<B", data[offset:offset+1])[0] == 0: 
 							offset = offset+1
-						results['groups'][groupname]['Memebers'] += binary_to_sid(data[offset:offset+12]) 
+						results['groups'][groupname]['Members'] += binary_to_sid(data[offset:offset+12]) 
 						#username = sid_to_username(binary_to_sid(data[offset:offset+12]))
 						username = None
 						if username != None:
-							results['groups'][groupname]['Memebers'] += " -> " + username + "</br>"
+							results['groups'][groupname]['Members'] += " -> " + username + "</br>"
 						else:
-							results['groups'][groupname]['Memebers'] += "\t\n"
+							results['groups'][groupname]['Members'] += "\t\n"
 						newOffset += 12
 					elif tmp == 1281:
-						results['groups'][groupname]['Memebers'] += binary_to_sid(data[offset:offset+28])
+						results['groups'][groupname]['Members'] += binary_to_sid(data[offset:offset+28])
 						#username = sid_to_username(binary_to_sid(data[offset:offset+28]))
 						username = None
 						if username != None:
-							results['groups'][groupname]['Memebers'] += " -> " + username + "</br>"
+							results['groups'][groupname]['Members'] += " -> " + username + "</br>"
 						else:
-							results['groups'][groupname]['Memebers'] += "\n"
+							results['groups'][groupname]['Members'] += "\n"
 						newOffset += 28
 
 
 			except:
-				if len(results['groups'][groupname]['Memebers']) == 0:
-					results['groups'][groupname]['Memebers'] = 'No users in this group'
+				if len(results['groups'][groupname]['Members']) == 0:
+					results['groups'][groupname]['Members'] = 'No users in this group'
 				else:
 					continue
 
