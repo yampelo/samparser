@@ -168,10 +168,10 @@ def samparse(samhive):
 				results['users'][user]['Account Flags'] = ""		
 		for user in results:
 			if results[user]['RID'] == str(RID):
-				results[user]['Last Login Date'] = f_values[RID][0]
-				results[user]['Password Reset Date'] = f_values[RID][1]
-				results[user]['Password Fail Date'] = f_values[RID][2]
-				results[user]['Account Flags'] = ""		
+				results['users'][user]['Last Login Date'] = f_values[RID][0]
+				results['users'][user]['Password Reset Date'] = f_values[RID][1]
+				results['users'][user]['Password Fail Date'] = f_values[RID][2]
+				results['users'][user]['Account Flags'] = ""		
 				for flag in f_values[RID][3]:
 					results['users'][user]['Account Flags'] += (flag + " | ")
 				results['users'][user]['Failed Login Count'] = f_values[RID][4]
